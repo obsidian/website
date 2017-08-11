@@ -1,0 +1,9 @@
+name: obsidian-cr
+type: Deployment
+registry_user: obsidiancr
+context: gke_waldrip-net_us-central1-a_waldrip-net
+ports:
+  http: 80
+ingress:
+  host: obsidian.cr
+  tls: true
