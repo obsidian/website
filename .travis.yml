@@ -6,6 +6,9 @@ env:
     - PSYKUBE_RELEASES_URL=https://api.github.com/repos/commercialtribe/psykube/releases/latest
 services:
   - docker
+before_install:
+  - sudo apt-get update
+  - sudo apt-get -y -o Dpkg::Options::="--force-confnew" install docker-engine
 before_deploy:
   # Docker Auth
   - docker login --username="$DOCKER_USERNAME" --password="$DOCKER_PASSWORD"
