@@ -49,10 +49,10 @@ const Header = ({ classes }) =>
         <Logo />
       </Link>
       <ul className={classes.menu}>
-        <li className={classes.menuItem}><Link className={classes.menuLink} to="/blob">Blog</Link></li>
-        <li className={classes.menuItem}><Link className={classes.menuLink} to="/guides">Guides</Link></li>
-        <li className={classes.menuItem}><Link className={classes.menuLink} to="/api">API</Link></li>
-        <li className={classes.menuItem}><Link className={classes.menuLink} to="https://github.com/obsidian/obsidian">Github</Link></li>
+        <li className={classes.menuItem}><Link className={classes.menuLink} to='/blob'>Blog</Link></li>
+        <li className={classes.menuItem}><Link className={classes.menuLink} to='/guides'>Guides</Link></li>
+        <li className={classes.menuItem}><Link className={classes.menuLink} to='/api'>API</Link></li>
+        <li className={classes.menuItem}><Link className={classes.menuLink} to='https://github.com/obsidian/obsidian'>Github</Link></li>
       </ul>
     </div>
   </header>

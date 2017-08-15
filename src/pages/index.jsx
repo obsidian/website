@@ -4,7 +4,7 @@ import Hero from '../components/Hero'
 const IndexPage = () =>
   <div>
     <Hero>
-      A Full Featured MVC Framework for Crystal
+      A Fully Featured MVC Framework for Crystal
     </Hero>
   </div>
 

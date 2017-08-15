@@ -10,7 +10,7 @@ const Layout = ({ children }) =>
   <Theme>
     <div>
       <Helmet
-        title='Gatsby Default Starter'
+        title='Obsidian.cr - A Fully Featured MVC Framework for Crystal'
         meta={[
           { name: 'description', content: 'Sample' },
           { name: 'keywords', content: 'sample, something' }
