@@ -35,6 +35,7 @@ export default class ShellType extends React.Component {
   }
 
   typeChar = () => {
+    clearTimeout(typeTimeout)
     const { currentLine, currentLineIndex } = this.state
     const nextIndex = currentLineIndex + 1
     const nextLine = this.props.lines[nextIndex]
@@ -47,8 +48,12 @@ export default class ShellType extends React.Component {
     setTimeout(this.typeChar, 1000)
   }
 
+  componentWillUnmount () {
+    clearTimeout(typeTimeout)
+  }
+
   componentDidUpdate () {
-    setTimeout(this.typeChar, this.nextChar ? Math.random() * 200 : 2000)
+    typeTimeout = setTimeout(this.typeChar, this.nextChar ? Math.random() * 200 : 2000)
   }
 
   render () {
