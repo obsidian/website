@@ -16,16 +16,16 @@ const styles = theme => ({
   }
 })
 
-const Header = ({ classes, children }) =>
-  <div
-    className={classes.hero}
-  >
-    {children}
+const Hero = ({ classes, children }) =>
+  <div className={classes.hero}>
+    <div>
+      {children}
+    </div>
   </div>
 
-Header.propTypes = {
+Hero.propTypes = {
   classes: object,
   children: node
 }
 
-export default injectSheet(styles)(Header)
+export default injectSheet(styles)(Hero)

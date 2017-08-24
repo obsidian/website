@@ -3,11 +3,12 @@ FROM node:latest as build
 ARG NPM_CONFIG_LOGLEVEL=warn
 RUN npm install -g yarn
 
-WORKDIR /build
-COPY package.json yarn.lock /build/
-RUN yarn install
-COPY . /build
-RUN yarn build
+ENV NODE_ENV development
 
-FROM nginx:alpine
-COPY --from=build /build/public /usr/share/nginx/html
+WORKDIR /app
+COPY package.json yarn.lock /app/
+RUN yarn install
+
+COPY . /app/
+
+CMD yarn start
