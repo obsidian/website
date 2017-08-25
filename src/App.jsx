@@ -1,7 +1,7 @@
 import React from 'react'
 import { Route } from 'react-router-dom'
-import Layout from './layouts/index'
-import Home from './pages/index'
+import Layout from './layouts/Layout'
+import Home from './pages/Home'
 
 export default () => (
   <Layout>
