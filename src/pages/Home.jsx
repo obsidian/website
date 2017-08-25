@@ -13,7 +13,7 @@ const styles = theme => ({
   }
 })
 
-const IndexPage = ({ classes }) =>
+const HomePage = ({ classes }) =>
   <div>
     <Hero className={classes.hero}>
       <div>A Fully Featured Crystal-lang MVC Framework</div>
@@ -29,8 +29,8 @@ const IndexPage = ({ classes }) =>
     </Hero>
   </div>
 
-IndexPage.propTypes = {
+HomePage.propTypes = {
   classes: object
 }
 
-export default injectSheet(styles)(IndexPage)
+export default injectSheet(styles)(HomePage)

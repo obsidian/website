@@ -1,10 +1,14 @@
 import React from 'react'
-import { Route } from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom'
 import Layout from './layouts/Layout'
-import Home from './pages/Home'
+import HomePage from './pages/Home'
+import ErrorPage from './pages/Error'
 
 export default () => (
   <Layout>
-    <Route exact path='/' component={Home} />
+    <Switch>
+      <Route exact path='/' component={HomePage} />
+      <Route render={props => <ErrorPage status={404} message='Not Found' {...props} />} />
+    </Switch>
   </Layout>
 )

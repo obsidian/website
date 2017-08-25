@@ -14,6 +14,7 @@ const styles = {
     boxShadow: 'inset rgba(255, 255, 255, 0.7) 0px 1px 1px'
   },
   window: {
+    position: 'relative',
     fontSize: 16,
     borderRadius: 6,
     overflow: 'hidden',
@@ -22,6 +23,11 @@ const styles = {
     backgroundColor: '#021021'
   },
   content: {
+    position: 'absolute',
+    top: 26,
+    bottom: 0,
+    left: 0,
+    right: 0,
     fontFamily: 'monospace',
     padding: 18,
     color: 'white',

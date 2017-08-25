@@ -12,6 +12,10 @@ const prefixer = postcss([ autoprefixer ])
 const style = `
   @import url('https://rsms.me/interface/interface.css');
 
+  a:link {
+    text-decoration: none
+  }
+
   html {
     font-family: Interface, sans-serif;
     font-size: 14px
@@ -23,11 +27,9 @@ const style = `
 `
 
 module.exports = (req, res) => {
-  const context = {}
+  const context = { here: true }
   if (context.url) {
-    res.writeHead(301, {
-      Location: context.url
-    })
+    res.writeHead(301, { Location: context.url })
     res.end()
     return
   }
@@ -58,5 +60,6 @@ module.exports = (req, res) => {
         </body>
       </html>
     )
-  ).then(html => res.end(html)).catch(console.error)
+  ).then(html => res.status(context.statusCode || 200).end(html)).catch(console.error)
+  console.log(context)
 }

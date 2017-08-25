@@ -41,10 +41,9 @@ const styles = theme => ({
     display: 'flex',
     alignItems: 'center',
     alignContent: 'center',
-    ':link': { color: 'white' },
-    ':hover': { color: theme.secondary },
-    ':active': { color: 'white' },
-    ':visited': { color: 'white' }
+    '&:link': { color: 'white' },
+    '&:visited': { color: 'white' },
+    '&:hover': { color: theme.secondary }
   }
 })
 
@@ -59,8 +58,8 @@ const Header = ({ classes }) =>
         <li className={classes.menuItem}><Link className={classes.menuLink} to='/install'>Install</Link></li>
         <li className={classes.menuItem}><Link className={classes.menuLink} to='/guides'>Guides</Link></li>
         <li className={classes.menuItem}><Link className={classes.menuLink} to='/docs'>Docs</Link></li>
-        <li className={classes.menuItem}><a className={classes.menuLink} href='https://github.com/obsidian/obsidian'>Github</a></li>
-        <li className={classes.menuItem}><a className={classes.menuLink} href='https://gitter.im/obsidian'><img src='//badges.gitter.im/owner/repo.svg' alt='chat on gitter' /></a></li>
+        <li className={classes.menuItem}><a className={classes.menuLink} target='_blank' href='https://github.com/obsidian/obsidian'>Github</a></li>
+        <li className={classes.menuItem}><a className={classes.menuLink} target='_blank' href='https://gitter.im/obsidian'><img src='//badges.gitter.im/owner/repo.svg' alt='chat on gitter' /></a></li>
       </ul>
     </div>
   </header>
