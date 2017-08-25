@@ -9,17 +9,16 @@ const styles = theme => ({
   shell: {
     marginTop: 36,
     marginLeft: '15%',
-    marginRight: '15%',
-    order: 0
+    marginRight: '15%'
   }
 })
 
 const IndexPage = ({ classes }) =>
   <div>
-    <Hero>
-      <div className={classes.heroText}>A Fully Featured Crystal-lang MVC Framework</div>
-      <ShellWindow className={classes.shell}>
-        <TypeWriter cursor prefix='$' lines={[
+    <Hero className={classes.hero}>
+      <div>A Fully Featured Crystal-lang MVC Framework</div>
+      <ShellWindow className={classes.shell} height={120}>
+        <TypeWriter cursor sloppiness={5} prefix='$' strings={[
           'obs new my-app',
           'obs scaffold user first_name:string last_name:string email:string',
           'obs migrate',

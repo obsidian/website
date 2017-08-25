@@ -1,11 +1,16 @@
 import React from 'react'
-import { string, arrayOf, bool } from 'prop-types'
+import { string, arrayOf, bool, number } from 'prop-types'
 
 export default class TypeWriter extends React.Component {
   static propTypes = {
+    sloppiness: number.isRequired,
     cursor: bool,
     prefix: string,
-    lines: arrayOf(string).isRequired
+    strings: arrayOf(string).isRequired
+  }
+
+  static defaultProps = {
+    sloppiness: 0
   }
 
   state = {
@@ -14,27 +19,60 @@ export default class TypeWriter extends React.Component {
     blink: false
   }
 
+  get nextTypedChar () {
+    const { sloppiness } = this.props
+    return (Math.random() * 100) < sloppiness ? this.randomChar : this.nextChar
+  }
+
   get nextChar () {
-    const { currentLine, currentLineIndex } = this.state
-    return this.props.lines[currentLineIndex][currentLine.length]
+    const { currentLine } = this.state
+    return this.completeCurrentLine[currentLine.length]
+  }
+
+  get completeCurrentLine () {
+    const { strings } = this.props
+    const { currentLineIndex } = this.state
+    return strings[currentLineIndex]
   }
 
   get cursor () {
     if (!this.props.cursor) return null
     const { blink } = this.state
-    return <span style={{ visibility: blink ? 'hidden' : 'visible' }}>│</span>
+    return <span style={{ visibility: blink ? 'visible' : 'hidden' }}>│</span>
+  }
+
+  get randomChar () {
+    const { currentLine } = this.state
+    let sliceFrom = currentLine.length - 5
+    if (sliceFrom < 0) sliceFrom = 0
+    const sliceTo = this.completeCurrentLine.length + 5
+    const possible = this.completeCurrentLine.slice(sliceFrom, sliceTo)
+    return possible.charAt(Math.floor(Math.random() * possible.length))
+  }
+
+  get nextIndex () {
+    return this.state.currentLineIndex + 1
+  }
+
+  get nextLine () {
+    return this.props.strings[this.nextIndex]
   }
 
   typeChar = () => {
     clearTimeout(this.typeTimeout)
-    const nextTimeout = this.nextChar ? Math.random() * 200 : 2000
+    let nextTimeout = this.nextChar ? Math.random() * 200 : 2000
     this.typeTimeout = setTimeout(() => {
-      const { currentLine, currentLineIndex } = this.state
-      const nextIndex = currentLineIndex + 1
-      const nextLine = this.props.lines[nextIndex]
-      const newState = this.nextChar
-        ? { currentLine: currentLine + this.nextChar }
-        : { currentLine: '', currentLineIndex: nextLine ? nextIndex : 0 }
+      const { currentLine } = this.state
+      const nextChar = this.nextTypedChar
+      let newState
+      if (currentLine && this.nextChar === nextChar && this.completeCurrentLine.indexOf(currentLine) !== 0) {
+        newState = { currentLine: currentLine.slice(0, -1) }
+      } else if (this.nextChar) {
+        if (this.nextChar !== nextChar) nextTimeout = nextTimeout * 2
+        newState = { currentLine: currentLine + nextChar }
+      } else {
+        newState = { currentLine: '', currentLineIndex: this.nextLine ? this.nextIndex : 0 }
+      }
       this.setState(newState, this.typeChar)
     }, nextTimeout)
   }
@@ -54,6 +92,11 @@ export default class TypeWriter extends React.Component {
   }
 
   render () {
-    return <span>{this.props.prefix} {this.state.currentLine}{this.cursor}</span>
+    return <span>
+      {this.props.prefix}&nbsp;
+      {this.state.currentLine}
+      <noscript>{this.completeCurrentLine}</noscript>
+      {this.cursor}
+    </span>
   }
 }

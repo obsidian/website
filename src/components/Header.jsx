@@ -3,7 +3,6 @@ import { object } from 'prop-types'
 import { Link } from 'react-router-dom'
 import injectSheet from 'react-jss'
 import Logo from './Logo.svg'
-import classNames from 'classnames'
 
 const styles = theme => ({
   header: {
@@ -23,35 +22,45 @@ const styles = theme => ({
     alignContent: 'center'
   },
   menu: {
-    display: 'inline-block',
+    display: 'flex',
+    justifyContent: 'flex-end',
+    flexDirection: 'row',
     padding: 0,
-    listStyle: 'none'
+    listStyle: 'none',
+    textTransform: 'uppercase'
   },
   menuItem: {
-    display: 'inline-block',
-    margin: 10
+    margin: 10,
+    display: 'flex',
+    alignItems: 'center',
+    alignContent: 'center'
   },
   menuLink: {
     color: 'white',
-    fontWeight: 'bold',
     textDecoration: 'none',
+    display: 'flex',
+    alignItems: 'center',
+    alignContent: 'center',
     ':link': { color: 'white' },
+    ':hover': { color: theme.secondary },
     ':active': { color: 'white' },
     ':visited': { color: 'white' }
   }
 })
 
 const Header = ({ classes }) =>
-  <header className={classNames(classes.header)}>
+  <header className={classes.header}>
     <div className={classes.inner}>
       <Link className={classes.logoLink} to='/'>
         <Logo />
       </Link>
       <ul className={classes.menu}>
-        <li className={classes.menuItem}><Link className={classes.menuLink} to='/blob'>Blog</Link></li>
+        <li className={classes.menuItem}><Link className={classes.menuLink} to='/overview'>Overview</Link></li>
+        <li className={classes.menuItem}><Link className={classes.menuLink} to='/install'>Install</Link></li>
         <li className={classes.menuItem}><Link className={classes.menuLink} to='/guides'>Guides</Link></li>
-        <li className={classes.menuItem}><Link className={classes.menuLink} to='/api'>API</Link></li>
+        <li className={classes.menuItem}><Link className={classes.menuLink} to='/docs'>Docs</Link></li>
         <li className={classes.menuItem}><a className={classes.menuLink} href='https://github.com/obsidian/obsidian'>Github</a></li>
+        <li className={classes.menuItem}><a className={classes.menuLink} href='https://gitter.im/obsidian'><img src='//badges.gitter.im/owner/repo.svg' alt='chat on gitter' /></a></li>
       </ul>
     </div>
   </header>

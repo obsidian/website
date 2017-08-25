@@ -1,10 +1,10 @@
 import React from 'react'
-import { object, string, node } from 'prop-types'
+import { object, string, node, oneOfType, number } from 'prop-types'
 import injectSheet from 'react-jss'
 
 const styles = {
   title: {
-    backgroundImage: 'linear-gradient(top, #e8e8e8, #bcbbbc)',
+    backgroundImage: 'linear-gradient(#e8e8e8, #bcbbbc)',
     height: 16,
     fontSize: 14,
     color: 'black',
@@ -18,20 +18,20 @@ const styles = {
     borderRadius: 6,
     overflow: 'hidden',
     border: '0px solid',
-    boxShadow: 'rgba(0, 0, 0, 0.5) 0px 10px 50px'
+    boxShadow: 'rgba(0, 0, 0, 0.5) 0px 10px 50px',
+    backgroundColor: '#021021'
   },
   content: {
     fontFamily: 'monospace',
     padding: 18,
     color: 'white',
-    backgroundColor: '#021021',
     textAlign: 'left'
   }
 }
 
-const ShellWindow = ({ classes, className, title, children }) => (
+const ShellWindow = ({ classes, className, title, children, height, width }) => (
   <div className={className}>
-    <div className={classes.window}>
+    <div className={classes.window} style={{ height, width }}>
       <div className={classes.title}>{title}</div>
       <div className={classes.content}>
         {children}
@@ -44,6 +44,8 @@ ShellWindow.propTypes = {
   title: string,
   classes: object,
   className: string,
+  height: oneOfType([number, string]),
+  width: oneOfType([number, string]),
   children: node
 }
 

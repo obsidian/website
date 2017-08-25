@@ -1,6 +1,7 @@
 import React from 'react'
-import { object, node } from 'prop-types'
+import { object, node, string } from 'prop-types'
 import injectSheet from 'react-jss'
+import classNames from 'classnames'
 
 const styles = theme => ({
   hero: {
@@ -16,8 +17,8 @@ const styles = theme => ({
   }
 })
 
-const Hero = ({ classes, children }) =>
-  <div className={classes.hero}>
+const Hero = ({ classes, children, className }) =>
+  <div className={classNames(classes.hero, className)}>
     <div>
       {children}
     </div>
@@ -25,7 +26,8 @@ const Hero = ({ classes, children }) =>
 
 Hero.propTypes = {
   classes: object,
-  children: node
+  children: node,
+  className: string
 }
 
 export default injectSheet(styles)(Hero)
