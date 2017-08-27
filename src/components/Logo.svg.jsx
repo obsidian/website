@@ -11,7 +11,7 @@ const styles = theme => ({
     strokeMiterlimit: 1.41421
   },
   logoAccent: {
-    fill: theme.secondary
+    fill: theme.colors.secondary
   },
   logo: {
     fill: 'white'

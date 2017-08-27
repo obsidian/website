@@ -53,6 +53,7 @@ module.exports = (req, res) => {
           <meta httpEquiv='Content-Type' content='text/html; charset=UTF-8' />
           <script src='/assets/index.js' defer />
           <style dangerouslySetInnerHTML={{ __html: style }} />
+          <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css' />
           <style type='text/css' id='server-side-styles' dangerouslySetInnerHTML={{ __html: css }} />
         </head>
         <body>

@@ -6,8 +6,7 @@ import Logo from './Logo.svg'
 
 const styles = theme => ({
   header: {
-    backgroundColor: theme.headerColor,
-    color: theme.headerText
+    ...theme.dark.container
   },
   logoLink: {
     display: 'inline-block',
@@ -36,14 +35,10 @@ const styles = theme => ({
     alignContent: 'center'
   },
   menuLink: {
-    color: 'white',
-    textDecoration: 'none',
+    ...theme.dark.link,
     display: 'flex',
     alignItems: 'center',
-    alignContent: 'center',
-    '&:link': { color: 'white' },
-    '&:visited': { color: 'white' },
-    '&:hover': { color: theme.secondary }
+    alignContent: 'center'
   }
 })
 

@@ -2,8 +2,14 @@ name: obsidian-cr
 type: Deployment
 registry_user: obsidiancr
 context: gke_waldrip-net_us-central1-a_waldrip-net
+secrets:
+  auth: obs:$apr1$HqAiioAq$k3Sxnv8zjFCaxxlKWUkyp1
 ports:
   http: 80
 ingress:
   host: obsidian.cr
   tls: true
+  annotations:
+    ingress.kubernetes.io/auth-type: basic
+    ingress.kubernetes.io/auth-secret: obsidian-cr
+    ingress.kubernetes.io/auth-realm: "Under Construction - Authentication Required"

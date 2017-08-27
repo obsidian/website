@@ -2,13 +2,14 @@ import React from 'react'
 import { object, node, string } from 'prop-types'
 import injectSheet from 'react-jss'
 import classNames from 'classnames'
+import Content from './Content'
 
 const styles = theme => ({
   hero: {
     color: theme.primary,
     fontSize: '3em',
     minHeight: 320,
-    backgroundColor: theme.greyBg,
+    backgroundColor: theme.colors.greyish,
     textAlign: 'center',
     display: 'flex',
     justifyContent: 'center',
@@ -19,9 +20,9 @@ const styles = theme => ({
 
 const Hero = ({ classes, children, className }) =>
   <div className={classNames(classes.hero, className)}>
-    <div>
+    <Content>
       {children}
-    </div>
+    </Content>
   </div>
 
 Hero.propTypes = {
