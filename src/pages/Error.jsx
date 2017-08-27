@@ -14,11 +14,11 @@ const styles = theme => ({
   },
   errorMessage: {
     fontSize: '3em',
-    color: theme.primary
+    color: theme.colors.primary
   },
   backLink: {
     textTransform: 'uppercase',
-    color: theme.secondary
+    color: theme.colors.secondary
   }
 })
 

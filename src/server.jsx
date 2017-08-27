@@ -27,7 +27,7 @@ const style = `
 `
 
 module.exports = (req, res) => {
-  const context = { here: true }
+  const context = {}
   if (context.url) {
     res.writeHead(301, { Location: context.url })
     res.end()
@@ -62,5 +62,4 @@ module.exports = (req, res) => {
       </html>
     )
   ).then(html => res.status(context.statusCode || 200).end(html)).catch(console.error)
-  console.log(context)
 }
