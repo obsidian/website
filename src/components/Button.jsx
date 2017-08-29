@@ -9,6 +9,7 @@ import classNames from 'classnames'
 
 const styles = theme => ({
   button: {
+    transition: [['all', '150ms']],
     background: color(theme.colors.primary).lighten(1.2).rgb().string(),
     color: 'white',
     border: [[0, 'solid', theme.colors.primary]],

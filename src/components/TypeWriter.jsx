@@ -1,8 +1,25 @@
 import React from 'react'
-import { string, arrayOf, bool, number } from 'prop-types'
+import { string, arrayOf, bool, number, object } from 'prop-types'
+import injectSheet from 'react-jss'
 
+const styles = {
+  '@keyframes blink': {
+    '0%': { opacity: 0 },
+    '50%': { opacity: 1 },
+    '100%': { opacity: 0 }
+  },
+  cursor: {
+    animationName: 'blink',
+    animationDuration: '1s',
+    animationIterationCount: 'infinite',
+    animationTimingFunction: 'step-end'
+  }
+}
+
+@injectSheet(styles)
 export default class TypeWriter extends React.Component {
   static propTypes = {
+    classes: object,
     sloppiness: number.isRequired,
     cursor: bool,
     prefix: string,
@@ -15,8 +32,7 @@ export default class TypeWriter extends React.Component {
 
   state = {
     currentLine: '',
-    currentLineIndex: 0,
-    blink: false
+    currentLineIndex: 0
   }
 
   get nextTypedChar () {
@@ -37,8 +53,7 @@ export default class TypeWriter extends React.Component {
 
   get cursor () {
     if (!this.props.cursor) return null
-    const { blink } = this.state
-    return <span style={{ visibility: blink ? 'visible' : 'hidden' }}>│</span>
+    return <span className={this.props.classes.cursor}>│</span>
   }
 
   get randomChar () {
@@ -82,7 +97,6 @@ export default class TypeWriter extends React.Component {
   }
 
   componentDidMount () {
-    this.blinkInterval = setInterval(this.blink, 700)
     this.typeTimeout = setTimeout(this.typeChar, 1000)
   }
 
